@@ -1,0 +1,129 @@
+﻿Sub queimarformulas()
+'
+' teste Macro
+'
+
+' Queimar as formulas
+    Sheets("Gerencial").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+
+' Queimar as formulas
+    Sheets("RV Controle Local - DTH").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+
+' Queimar as formulas
+    Sheets("Analítico - DTH").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("Analítico - Dados Reparo").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("RV Controle Local-Dados Serviço").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("Analítico -Dados Serviço").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("RV Controle Local -Fibra Óptica").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("Analítico - Fibra Óptica").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("RV Controle Local - Cél. Conf.").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("RV Controle Local -Configurador").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("Analítico - Configurador").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+    
+' Queimar as formulas
+    Sheets("RV Controle Local - Supervisor").Select
+    Cells.Select
+    Selection.Copy
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Application.CutCopyMode = False
+
+
+End Sub
+Sub filtrar()
+'
+' filtrar Macro
+'
+
+'
+    Sheets("RV Controle Local - Supervisor").Select
+    Range("A9").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.AutoFilter
+    Range("A9").Select
+    ActiveSheet.Range("$A$9:$R$32").AutoFilter Field:=1, Criteria1:="=CE", _
+        Operator:=xlOr, Criteria2:="=PE"
+    Rows("18:18").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Delete Shift:=xlUp
+    Range("A9").Select
+    Selection.AutoFilter
+End Sub
+Sub teste()
+'
+' teste Macro
+'
+    Range("A9").Select
+End Sub

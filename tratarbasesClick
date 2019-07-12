@@ -1,0 +1,34 @@
+@ECHO OFF
+
+:: tratamento da data e hora da tarefas abertas
+:: tratamento da data e hora
+
+
+:: APAGAR TODOS OS ARQUIVOS
+C:
+CD C:\Users\leonardo.reis\Downloads\Intraday
+
+rem DEL TarefasFechadasHoje*.*
+rem DEL TecnicosdoClick*.*
+rem DEL Tarefasabertas*.*
+
+COPY W:\PUBLICA\Bases_Click\*.* D:\Users\leonardo.reis\Downloads\Intraday
+ECHO COPIA: OK
+
+:: DESCOMPACTAR TUDO
+C:
+CD C:\Program Files\WinRAR\"
+winrar.exe x "D:\Users\leonardo.reis\Downloads\Intraday\"*.* "D:\Users\leonardo.reis\Downloads\Intraday\"
+
+
+D:
+CD D:\Users\leonardo.reis\Downloads\Intraday
+
+rename tarefasfechadas*.* TarefasFechadasHoje_.xlsx
+rename Tecnicosdo*.* TecnicosdoClick_.xlsx
+rename TarefasAbertas*.* TarefasAbertas_.csv
+
+D:
+CD D:\Users\leonardo.reis\Downloads\Intraday
+DEL *.*zip
+EXIT
