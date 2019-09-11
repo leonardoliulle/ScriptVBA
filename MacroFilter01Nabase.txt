@@ -1,0 +1,80 @@
+
+Function clear_filter()
+On Error Resume Next
+Me.Application.ScreenUpdating = False
+For i = 1 To 32
+    ActiveSheet.ListObjects("base").Range.AutoFilter Field:=i
+Next i
+Me.Application.ScreenUpdating = True
+End Function
+
+Function colfilter(ByVal col As Integer)
+
+    If col = 4 Then '' Fechadas
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=4, Criteria1:="1"
+    ElseIf col = 5 Then '' Abertas
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=4, Criteria1:="0"
+    ElseIf col = 6 Then '' 0-24
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=7, Criteria1:="1"
+    ElseIf col = 7 Then '' 24-48
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=8, Criteria1:="1"
+    ElseIf col = 8 Then '' 48-72
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=9, Criteria1:="1"
+    ElseIf col = 9 Then '' 3-10
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=10, Criteria1:="1"
+    ElseIf col = 10 Then '' 10-20
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=11, Criteria1:="1"
+    ElseIf col = 11 Then '' 20-30
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=12, Criteria1:="1"
+    ElseIf col = 12 Then '' >30
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=13, Criteria1:="1"
+    ElseIf col = 13 Then '' repetidos 20 dias
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=25, Criteria1:="1"
+    ElseIf col = 14 Then '' repetidos 30 dias
+        ActiveSheet.ListObjects("base").Range.AutoFilter Field:=26, Criteria1:="1"
+    End If
+
+End Function
+
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Dim col As Integer
+Dim lin As Integer
+
+On Error GoTo sair:
+
+    col = ActiveCell.Column
+    lin = ActiveCell.Row
+
+Dim filter As Integer
+Dim regional As String
+Dim uf As String
+
+filter = Range("B1")
+regional = Cells(lin, 2).Value
+uf = Cells(lin, 3).Value
+
+Me.Application.ScreenUpdating = False
+
+
+    If lin > 6 And col > 3 And col < 15 And regional <> "" And filter = -1 Then
+    '' coluna uf
+        Sheets("Base").Select
+        clear_filter
+        
+        If uf <> "" Then
+            ActiveSheet.ListObjects("base").Range.AutoFilter Field:=28, Criteria1:=uf
+            colfilter col
+        ElseIf uf = "" And Left(regional, 1) = "R" Then
+            ActiveSheet.ListObjects("base").Range.AutoFilter Field:=32, Criteria1:=regional
+            colfilter col
+        ElseIf Left(regional, 1) = "T" Then
+            clear_filter
+            colfilter col
+        End If
+
+    End If
+
+Me.Application.ScreenUpdating = True
+sair:
+End Sub
